@@ -4,13 +4,13 @@ from PIL import Image, ImageOps
 import pytesseract
 from transformers import pipeline, logging
 
-# Suppress unnecessary warnings
+
 logging.set_verbosity_error()
 
-# Initialize the explainer model once
+
 explainer = pipeline("text2text-generation", model="google/flan-t5-large")
 
-# Function to extract text from an image
+
 def extract_text(image_path):
     try:
         print(f"Opening image file: {image_path}")
@@ -35,7 +35,6 @@ def extract_text(image_path):
         print(f"An error occurred while extracting text: {e}")
         return None
 
-# Function to explain text in chunks
 def explain_text(text, chunk_size=1000):
     try:
         explanations = []
@@ -50,7 +49,7 @@ def explain_text(text, chunk_size=1000):
         print(f"An error occurred while explaining text: {e}")
         return "Could not explain text."
 
-# Function to upload an image and process it
+
 def upload_image():
     file_path = filedialog.askopenfilename(
         filetypes=[("Image files", "*.jpg *.jpeg *.png *.bmp *.tiff")]
@@ -76,7 +75,7 @@ def upload_image():
     else:
         messagebox.showwarning("Warning", "No file selected.")
 
-# Set up the GUI
+
 root = Tk()
 root.title("Image Text Explainer")
 root.geometry("800x600")
